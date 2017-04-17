@@ -6,7 +6,3 @@
   
 - name: Run configuration tasks
   include: config.yml
-  
-- name: Ending playbook
-  action: fail msg="Apache configuration is invalid. Thanks for playing!"
-  when: apache_result|failed
