@@ -9,7 +9,7 @@
   become: true
 
 - name: Make tt-rss directory in www
-  file: path=/var/www/tt-rss state=directory owner=www-data group=www-data mode=0644
+  file: path="{{ ttrss_install_path }}" state=directory owner=www-data group=www-data mode=0644
   become: true
   
 - name: "Get Tiny Tiny RSS Server"
@@ -17,4 +17,11 @@
     src: "{{ ttrss_zip }}"
     dest: "{{ ttrss_install_path }}"
     remote_src: True
+  become: true
+  
+- name: Reset permissions for tt-rss for www
+  file:
+    path: "{{ ttrss_install_path }}"
+    mode: 0644
+    recurse: yes
   become: true
