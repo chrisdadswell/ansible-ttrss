@@ -52,11 +52,10 @@
   register: apache_result
   ignore_errors: yes
   become: true
-  
-- name: Ensure apache site is enabled
-  command: /usr/sbin/a2ensite /etc/apache2/sites-available/tt-rss
-  register: result
-  failed_when: result.rc != 0 and "already enabled" not in result.stdout
-  changed_when: result.rc == 0 and "already enabled" not in result.stdout
+
+- name: Enable tt-rss site on apache
+  command: a2ensite tt-rss
+  args:
+    creates: /etc/apache2/sites-enabled/tt-rss.conf
   notify: Restart apache
   become: true
