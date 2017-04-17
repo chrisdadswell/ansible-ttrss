@@ -1,5 +1,0 @@
----
-
-- hosts: ttrss-server
-  roles:
-    - { role: ttrss-server, ttrss_db_password: secret }
