@@ -12,5 +12,4 @@
   git:
     repo: "{{ ttrss_git_repo }}"
     dest: "{{ ttrss_install_path }}"
-    depth: 1
   become: true
