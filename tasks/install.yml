@@ -8,6 +8,9 @@
     - "{{ dependencies }}"
   become: true
 
+- name: Make tt-rss directory in www
+  file: path=/var/www/tt-rss state=directory owner: www-data group: www-data mode: 0644
+  
 - name: "Get Tiny Tiny RSS Server"
   unarchive:
     src: "{{ ttrss_git_repo }}"
