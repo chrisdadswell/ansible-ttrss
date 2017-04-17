@@ -47,10 +47,3 @@
   notify:
     - Restart tt-rss daemon
   become: true
-
-- name: Ensure init.d script for update-daemon is enabled and runs
-  service:
-    name: tt-rss
-    enabled: yes
-    state: started
-  become: true

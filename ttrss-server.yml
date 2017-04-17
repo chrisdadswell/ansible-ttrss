@@ -6,6 +6,7 @@
     ttrss_user_password: "{{ ttrss_user_passwd }}",
     ttrss_db_password: "{{ ttrss_db_passwd }}",
     ttrss_arty_passwd: "{{ ttrss_arty_passwd }}",
+    ttrss_self_url: "{{ ttrss_self_url }}"
     }
     
   become_user: root
