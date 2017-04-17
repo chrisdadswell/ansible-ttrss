@@ -48,9 +48,9 @@
   become: true
 
 - name: Check the apache configuration
-   command: apachectl -t
-   register: apache_result
-   ignore_errors: yes
+  command: apachectl -t
+  register: apache_result
+  ignore_errors: yes
   become: true
   
 - name: Ensure apache site is enabled
