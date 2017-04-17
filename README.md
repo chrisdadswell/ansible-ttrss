@@ -6,4 +6,4 @@ Example playbook
 
 - hosts: ttrss-server
   roles:
-    - { role: ttrss-server, ttrss_db_password: secret }
+    - { role: ansible-ttrss, ttrss_db_password: secret }
