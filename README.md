@@ -1,5 +1,9 @@
 Ansible role that deploys a fresh TTRSS server using NGINX and MySQL server.
 
-Can also import existing TTRSS MySQL DB as an option.
+Example playbook
 
-FTW!
+---
+
+- hosts: ttrss-server
+  roles:
+    - { role: ttrss-server, ttrss_db_password: secret }
