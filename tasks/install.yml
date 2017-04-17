@@ -30,6 +30,7 @@
   - cache
   - feed-icons
   - lock
+  become: true
   
 # SERVICE 
 
