@@ -1,0 +1,5 @@
+---
+
+- hosts: ttrss-server
+  roles:
+    - { role: ansible-server, ttrss_db_password: secret }
