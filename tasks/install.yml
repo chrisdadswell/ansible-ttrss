@@ -9,7 +9,7 @@
   become: true
 
 - name: Make tt-rss directory in www
-  file: path="{{ ttrss_install_path }}" state=directory owner=www-data group=www-data mode=0644
+  file: path="{{ ttrss_install_path }}" state=directory owner=www-data group=www-data mode=0755
   become: true
   
 - name: "Get Tiny Tiny RSS Server"
