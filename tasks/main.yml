@@ -1,0 +1,7 @@
+---
+# Role for tt-rss server
+
+blah
+
+- name: Run install task
+  include: install.yml
