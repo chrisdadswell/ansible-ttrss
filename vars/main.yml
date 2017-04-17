@@ -16,3 +16,15 @@ ttrss_enable_gzip: true
 # sql - logs to database, can be seen in Preferences -> System
 # '' - uses PHP logging, usually the http server error log
 ttrss_log_destination: syslog
+
+dependencies:
+  - php5
+  - php5-pgsql
+  - php5-fpm
+  - php-apc
+  - php5-curl
+  - php5-cli
+  - postgresql
+  - python-psycopg2
+  - lighttpd
+  - git
