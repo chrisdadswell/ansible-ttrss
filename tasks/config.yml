@@ -47,12 +47,6 @@
     - { src: php7.0-fpm.conf.j2, dest: /etc/apache2/conf-available/php7.0-fpm.conf }
   become: true
 
-- name: Check the apache configuration
-  command: apachectl -t
-  register: apache_result
-  ignore_errors: yes
-  become: true
-
 - name: Enable tt-rss site on apache
   command: a2ensite tt-rss
   args:
