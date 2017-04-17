@@ -16,14 +16,13 @@ ttrss_enable_gzip: true
 ttrss_log_destination: syslog
 
 dependencies:
-  - 'php5'
-  - 'php5-mysql'
-  - 'php5-fpm'
-  - 'php-apc'
-  - 'php5-curl'
-  - 'php5-cli'
-  - 'php-mbstring'
-  - 'php-dom'
+  - 'php7.0'
+  - 'php7.0-fpm'
+  - 'php7.0-apc'
+  - 'php7.0-curl'
+  - 'php7.0-cli'
+  - 'php7.0-mbstring'
+  - 'php7.0-dom'
   - 'mysql-server'
   - 'mysql-client'
   - 'php7.0-mysql'
