@@ -13,26 +13,26 @@
   template:
     src: config.php.j2
     dest: "{{  ttrss_install_path }}/config.php"
+  become: true
   
-- name: "Ensure database is present"
-  become_user: postgres
-  postgresql_db: 
-    name: "{{ ttrss_db_name }}"
-    encoding: "{{ ttrss_db_encoding }}"
-    lc_collate: "{{ ttrss_db_collate }}"
-    lc_ctype: "{{ ttrss_db_ctype }}"
-    template: template0
-    owner: "{{ ttrss_db_user }}"
+- name: Create a new database with name 'ttrss'
+  mysql_db:
+    name: ttrss
+    state: present
+    login_password: "{{ ttrss_db_passwd }}"
+  become: true
 
-- name: Ensure db objects are created
-  environment:
-    PGPASSWORD: "{{ ttrss_db_password }}"
-    PGUSER: "{{ ttrss_db_user }}"
-    PGHOST: localhost
-  command: psql -d "{{ttrss_db_name}}" -f "{{ ttrss_install_path }}/schema/ttrss_schema_pgsql.sql"
+- name: Import MySQL schema
+  mysql_db:
+    state: import
+    name: all
+    target: "{{ ttrss_install_path }}/schema/ttrss_schema_mysql.sql"
+    login_password: "{{ ttrss_db_passwd }}"
   args:
     creates: "{{ ttrss_install_path }}/config.php"
+  become: true
 
+    
 - name: "Ensure apache is configured"
   template:
     src: "{{ item.src }}"
