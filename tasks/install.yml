@@ -14,7 +14,7 @@
   
 - name: "Get Tiny Tiny RSS Server"
   unarchive:
-    src: "{{ ttrss_git_repo }}"
+    src: "{{ ttrss_zip }}"
     dest: "{{ ttrss_install_path }}"
     remote_src: True
   become: true
