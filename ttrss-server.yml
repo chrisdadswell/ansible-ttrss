@@ -3,7 +3,7 @@
 - hosts: ttrss-server
   roles:
     - { role: ansible-ttrss, 
-    ttrss_user_password: "{{ ttrss_user_passwd }}" 
+    ttrss_user_password: "{{ ttrss_user_passwd }}",
     ttrss_db_password: "{{ ttrss_db_passwd }}" 
     }
     
