@@ -22,6 +22,8 @@
 - name: Reset permissions for tt-rss for www
   file:
     path: "{{ ttrss_install_path }}"
+    owner: www-data
+    group: www-data
     mode: 0644
     recurse: yes
   become: true
