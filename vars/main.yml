@@ -16,12 +16,25 @@ ttrss_enable_gzip: true
 ttrss_log_destination: syslog
 
 dependencies:
+<<<<<<< HEAD
+  - php5
+  - php5-pgsql
+  - php5-fpm
+  - php-apc
+  - php5-curl
+  - php5-cli
+  - postgresql
+  - python-psycopg2
+  - lighttpd
+  - git
+=======
   - 'php5'
   - 'php5-mysql'
   - 'php5-fpm'
   - 'php-apc'
   - 'php5-curl'
   - 'php5-cli'
+<<<<<<< HEAD
   - 'php-mbstring'
   - 'php-dom'
   - 'mysql-server'
@@ -29,3 +42,10 @@ dependencies:
   - 'php7.0-mysql'
   - 'apache'
   - 'git'
+=======
+  - 'mysql'
+  - 'python-psycopg2'
+  - 'nginx'
+  - 'git'
+>>>>>>> a78947bece6e654ff6b14c80f7ec4fe2bf3723e9
+>>>>>>> 733d338519598bd33b24d92529084526c5471046
