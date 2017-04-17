@@ -8,8 +8,9 @@
     - "{{ dependencies }}"
   become: true
 
-- name: "Git clone Tiny Tiny RSS Server code"
-  git:
-    repo: "{{ ttrss_git_repo }}"
+- name: "Get Tiny Tiny RSS Server"
+  - unarchive:
+    src: "{{ ttrss_git_repo }}"
     dest: "{{ ttrss_install_path }}"
+    remote_src: True
   become: true
