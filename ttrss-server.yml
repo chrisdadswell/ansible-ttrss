@@ -2,7 +2,10 @@
 
 - hosts: ttrss-server
   roles:
-    - { role: ansible-ttrss, ttrss_db_password: "{{ ttrss_db_passwd }}" }
+    - { role: ansible-ttrss, 
+    ttrss_user_password: "{{ ttrss_user_passwd }}" 
+    ttrss_db_password: "{{ ttrss_db_passwd }}" 
+    }
     
   become_user: root
   become_method: sudo
