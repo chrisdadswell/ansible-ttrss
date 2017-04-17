@@ -1,0 +1,18 @@
+---
+# vars file for tt-rss
+
+ttrss_db_user: ttrss
+ttrss_db_password: ttrss
+ttrss_db_name: ttrss
+ttrss_db_encoding: "UTF-8"
+ttrss_db_collate: "en_GB.UTF-8"
+ttrss_db_ctype: "en_GB.UTF-8"
+ttrss_git_repo: "https://tt-rss.org/gitlab/fox/tt-rss.git"
+ttrss_install_path: "/var/www/ttrss"
+ttrss_url_path: "{{ ttrss_install_path | basename }}"
+ttrss_enable_gzip: true
+# Sets log destination for Tiny Tiny RSS
+# syslog - logs to system log
+# sql - logs to database, can be seen in Preferences -> System
+# '' - uses PHP logging, usually the http server error log
+ttrss_log_destination: syslog
