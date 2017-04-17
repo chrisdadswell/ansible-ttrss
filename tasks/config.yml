@@ -2,17 +2,17 @@
 
 # config
 
-- name: Ensure init.d script for update-daemon is enabled and runs
-  service:
-    name: tt-rss
-    enabled: yes
-    state: started
-  become: true
-
-- name: Ensure config.php is present
-  template:
-    src: config.php.j2
-    dest: "{{  ttrss_install_path }}/config.php"
+- name: Reset permissions for tt-rss for www
+  file:
+    state: directory
+    owner: www-data
+    group: www-data
+    recurse: yes
+    path: "{{ ttrss_install_path }}/{{ item }}"
+  with_items:
+  - cache
+  - feed-icons
+  - lock
   become: true
   
 - name: Create a new database with name 'ttrss'
@@ -30,6 +30,12 @@
     login_password: "{{ ttrss_db_passwd }}"
   args:
     creates: "{{ ttrss_install_path }}/config.php"
+  become: true
+
+- name: Ensure config.php is present
+  template:
+    src: config.php.j2
+    dest: "{{  ttrss_install_path }}/config.php"
   become: true
 
     
