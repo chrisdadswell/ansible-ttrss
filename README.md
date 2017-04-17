@@ -2,7 +2,7 @@ Ansible role that deploys a fresh TTRSS server using NGINX and MySQL server.
 
 Example playbook
 
-<code>
+```
 
 ---
 
@@ -15,8 +15,8 @@ Example playbook
     ttrss_self_url: "{{ ttrss_self_url }}"
     }
     
-  become_user: root
+  become_user: root  
   become_method: sudo
   
-</code>
+```
 
