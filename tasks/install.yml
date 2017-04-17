@@ -7,3 +7,9 @@
   with_items:
     - "{{ dependencies }}"
   become: true
+
+- name: "Git clone Tiny Tiny RSS Server code"
+  git:
+    repo: "{{ ttrss_git_repo }}"
+    dest: "{{ ttrss_install_path }}"
+    depth: 1
