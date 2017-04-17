@@ -1,4 +1,6 @@
-Ansible role that deploys a fresh TTRSS server using NGINX and MySQL server.
+Ansible role that deploys a fresh TTRSS server using Apache and MySQL server.
+
+This playbook has been created to run via Jenkins and resolve dependencies from a local OSS Artifactory repo.
 
 Example playbook
 
