@@ -2,3 +2,5 @@
 # tasks file for tt-rss
 
 
+- name: Run install task
+  include: install.yml
