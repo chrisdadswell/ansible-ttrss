@@ -18,7 +18,6 @@ ttrss_log_destination: syslog
 dependencies:
   - 'php7.0'
   - 'php7.0-fpm'
-  - 'php7.0-apc'
   - 'php7.0-curl'
   - 'php7.0-cli'
   - 'php7.0-mbstring'
@@ -26,6 +25,7 @@ dependencies:
   - 'mysql-server'
   - 'mysql-client'
   - 'php7.0-mysql'
+  - 'libapache2-mod-php7.0'
   - 'apache'
   - 'git'
 
