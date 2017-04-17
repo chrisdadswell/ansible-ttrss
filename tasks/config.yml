@@ -1,0 +1,94 @@
+---
+
+# config
+
+- name: "Ensure db user is present"
+  become_user: postgres
+  postgresql_user: 
+    name: "{{ ttrss_db_user }}"
+    password: "{{ ttrss_db_password }}"
+    state: present
+
+- name: "Ensure database is present"
+  become_user: postgres
+  postgresql_db: 
+    name: "{{ ttrss_db_name }}"
+    encoding: "{{ ttrss_db_encoding }}"
+    lc_collate: "{{ ttrss_db_collate }}"
+    lc_ctype: "{{ ttrss_db_ctype }}"
+    template: template0
+    owner: "{{ ttrss_db_user }}"
+
+- name: "Ensure git checkout is available"
+  git:
+    repo: "{{ ttrss_git_repo }}"
+    dest: "{{ ttrss_install_path }}"
+    depth: 1
+
+- name: Ensure needed directories are writeable for www-data
+  file:
+    state: directory
+    owner: www-data
+    group: www-data
+    recurse: yes
+    path: "{{ ttrss_install_path }}/{{ item }}"
+  with_items:
+  - cache
+  - feed-icons
+  - lock
+
+- name: Ensure db objects are created
+  environment:
+    PGPASSWORD: "{{ ttrss_db_password }}"
+    PGUSER: "{{ ttrss_db_user }}"
+    PGHOST: localhost
+  command: psql -d "{{ttrss_db_name}}" -f "{{ ttrss_install_path }}/schema/ttrss_schema_pgsql.sql"
+  args:
+    creates: "{{ ttrss_install_path }}/config.php"
+
+- name: Ensure config.php is present
+  template:
+    src: config.php.j2
+    dest: "{{  ttrss_install_path }}/config.php"
+
+- name: "Ensure lighttpd is configured"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    validate: "lighttpd -t -f %s"
+  notify: Restart lighttpd
+  with_items:
+    - { src: 20-tt-rss.conf.j2, dest: /etc/lighttpd/conf-available/20-tt-rss.conf }
+    - { src: 15-fastcgi-php-fpm.conf.j2, dest: /etc/lighttpd/conf-available/15-fastcgi-php-fpm.conf }
+
+- name: Ensure lighttpd modules are loaded
+  command: /usr/sbin/lighty-enable-mod "{{ item }}"
+  register: result
+  failed_when: result.rc != 0 and "already enabled" not in result.stdout
+  changed_when: result.rc == 0 and "already enabled" not in result.stdout
+  notify: Restart lighttpd
+  with_items:
+    - tt-rss
+    - fastcgi-php-fpm
+    - expire
+    - fastcgi
+    - accesslog
+
+- name: Ensure init.d script for update-daemon is availaible
+  copy:
+    src: tt-rss
+    dest: /etc/init.d/tt-rss
+    mode: 0755
+
+- name: Ensure config for update-daemon is availaible
+  template:
+    src: default-tt-rss.j2
+    dest: /etc/default/tt-rss
+  notify:
+    - Restart tt-rss daemon
+
+- name: Ensure init.d script for update-daemon is enabled and runs
+  service:
+    name: tt-rss
+    enabled: yes
+    state: started
