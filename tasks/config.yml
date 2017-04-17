@@ -46,7 +46,7 @@
   with_items:
     - { src: tt-rss.conf.j2, dest: /etc/apache2/sites-available/tt-rss.conf }
     - { src: php7.0-fpm.conf.j2, dest: /etc/apache2/conf-available/php7.0-fpm.conf }
-  become: true`
+  become: true
     
 - name: Ensure apache site is enabled
   command: /usr/sbin/a2ensite /etc/apache2/sites-available/tt-rss.conf
