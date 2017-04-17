@@ -5,4 +5,9 @@
 - name: Install pre-requisites
   apt: name={{ item }} state=present
   with_items:
+<<<<<<< HEAD
     - "{{ dependencies }}"
+=======
+    - "{{ dependencies }}"
+  become: true
+>>>>>>> a78947bece6e654ff6b14c80f7ec4fe2bf3723e9
