@@ -28,8 +28,6 @@
     name: all
     target: "{{ ttrss_install_path }}/schema/ttrss_schema_mysql.sql"
     login_password: "{{ ttrss_db_passwd }}"
-  args:
-    creates: "{{ ttrss_install_path }}/config.php"
   become: true
 
 - name: Ensure config.php is present
