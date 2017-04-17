@@ -18,13 +18,13 @@ ttrss_enable_gzip: true
 ttrss_log_destination: syslog
 
 dependencies:
-  - php5
-  - php5-pgsql
-  - php5-fpm
-  - php-apc
-  - php5-curl
-  - php5-cli
-  - postgresql
-  - python-psycopg2
-  - lighttpd
-  - git
+  - 'php5'
+  - 'php5-mysql'
+  - 'php5-fpm'
+  - 'php-apc'
+  - 'php5-curl'
+  - 'php5-cli'
+  - 'mysql'
+  - 'python-psycopg2'
+  - 'nginx'
+  - 'git'
