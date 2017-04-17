@@ -25,7 +25,7 @@
 - name: Import MySQL schema
   mysql_db:
     state: import
-    name: all
+    name: ttrss
     target: "{{ ttrss_install_path }}/schema/ttrss_schema_mysql.sql"
     login_password: "{{ ttrss_db_passwd }}"
   become: true
