@@ -31,4 +31,5 @@ dependencies:
   - 'apache2'
   - 'git'
   - 'unzip'
+  - 'python-mysqldb'
 
