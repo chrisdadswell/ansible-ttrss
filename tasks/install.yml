@@ -18,33 +18,3 @@
     dest: "{{ ttrss_install_path }}"
     remote_src: True
   become: true
-  
-- name: Reset permissions for tt-rss for www
-  file:
-    state: directory
-    owner: www-data
-    group: www-data
-    recurse: yes
-    path: "{{ ttrss_install_path }}/{{ item }}"
-  with_items:
-  - cache
-  - feed-icons
-  - lock
-  become: true
-  
-# SERVICE 
-
-- name: Ensure init.d script for update-daemon is available
-  copy:
-    src: tt-rss
-    dest: /etc/init.d/tt-rss
-    mode: 0755
-  become: true
-
-- name: Ensure config for update-daemon is available
-  template:
-    src: default-tt-rss.j2
-    dest: /etc/default/tt-rss
-  notify:
-    - Restart tt-rss daemon
-  become: true
