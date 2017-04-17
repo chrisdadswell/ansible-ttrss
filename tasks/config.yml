@@ -8,11 +8,7 @@
     owner: www-data
     group: www-data
     recurse: yes
-    path: "{{ ttrss_install_path }}/{{ item }}"
-  with_items:
-  - cache
-  - feed-icons
-  - lock
+    path: "{{ ttrss_install_path }}"
   become: true
   
 - name: Create a new database with name 'ttrss'
